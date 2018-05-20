@@ -16,6 +16,6 @@
 
 ### Install and launch 
    - Navigate to mobile-flashcards
-   - npm install
+   - yarn install / npm install
    - yarn start / npm start
    - open Flash-Card with expo App in your device or emulator
