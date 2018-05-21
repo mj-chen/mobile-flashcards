@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, AsyncStorage, Platform, ActivityIndicator } from 'react-native'
 import { getDecks } from '../utils/helpers'
 import { connect } from 'react-redux'
-import { RECEIVEDECKS, receiveDecks } from "../actions"
-
+import { RECEIVE_DECKS, receiveDecks } from '../actions'
+import { beige, lightGrey, grey, white } from '../utils/colors'
 
 class CardList extends Component {
 
@@ -14,7 +14,7 @@ class CardList extends Component {
     componentDidMount() {
         getDecks()
             .then(decks => {
-                this.props.dispatch(receiveDecks(RECEIVEDECKS, decks))
+                this.props.dispatch(receiveDecks(RECEIVE_DECKS, decks))
             })
             .then(this.setState({ loaded: true }))
     }
@@ -58,27 +58,27 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'stretch',
-        backgroundColor: 'rgba(238,231,231,0.85)'
+        backgroundColor: beige
     },
     card: {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: Platform.OS === "ios" ? 16 : 2,
-        borderColor: "rgba(0,0,0,0.1)",
+        borderColor: lightGrey,
         borderWidth: 1,
         borderStyle: "solid",
         padding: 20,
         marginLeft: 10,
         marginRight: 10,
         marginTop: 17,
-        backgroundColor: 'white'
+        backgroundColor: white
     },
     title: {
         fontSize: 35,
     },
     account: {
         fontSize: 25,
-        color: 'rgba(0,0,0,0.6)'
+        color: grey
     }
 })
 

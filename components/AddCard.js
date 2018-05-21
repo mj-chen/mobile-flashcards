@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, TextInput,
 import { addCardToDeck, getDecks } from '../utils/helpers'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
-import { ADDCARD, addCard, RECEIVEDECKS, receiveDecks } from '../actions'
+import { ADD_CARD, addCard, RECEIVE_DECKS, receiveDecks } from '../actions'
+import { white, green, ligthGrey, golden, blue } from '../utils/colors'
 
 class AddCard extends Component {
 
@@ -15,17 +16,15 @@ class AddCard extends Component {
     }
 
     addCard = () => {
-        const { question } = this.state
-        const { answer } = this.state
-        const { bounce, opacity } = this.state
+        const { question, answer, bounce, opacity } = this.state
         const id = this.props.navigation.getParam('cardId')
         if (question && answer) {
             addCardToDeck(id, { question, answer })
-                .then(this.props.dispatch(addCard(ADDCARD, [{ question, answer }])))
+                .then(this.props.dispatch(addCard(ADD_CARD, [{ question, answer }])))
                 .then(() => {
                     getDecks()
                     .then(decks => {
-                        this.props.dispatch(receiveDecks(RECEIVEDECKS, decks))
+                        this.props.dispatch(receiveDecks(RECEIVE_DECKS, decks))
                     })
                 })
                 .then(
@@ -84,13 +83,13 @@ class AddCard extends Component {
                 <Animated.View style={{ marginVertical: 40, opacity: this.state.opacity, transform: [{ scale: this.state.bounce }] }}>
                     <Ionicons
                         name={Platform.OS === 'ios' ? 'ios-checkmark-circle-outline' : 'md-checkmark-circle'}
-                        color='green'
+                        color={green}
                         size={70}
                     />
                 </Animated.View>
 
                 <TouchableOpacity style={styles.button} onPress={this.addCard}>
-                    <Text style={{ fontSize: 20, color: 'white' }}> Submit </Text>
+                    <Text style={{ fontSize: 20, color: white }}> Submit </Text>
                 </TouchableOpacity>
 
             </KeyboardAvoidingView>
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     input: {
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: blue,
         borderRadius: 10,
         fontSize: 15,
         height: 60,
@@ -124,9 +123,9 @@ const styles = StyleSheet.create({
     button: {
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: ligthGrey,
         borderRadius: 15,
-        backgroundColor: 'black',
+        backgroundColor: golden,
         paddingHorizontal: 30,
         paddingVertical: 20,
         marginVertical: 20

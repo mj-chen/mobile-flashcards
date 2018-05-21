@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity, Animated, 
 import { getDeck, clearLocalNotifications, setLocalNotifications, MOBILE_FLASHCARDS_NOTE } from '../utils/helpers'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
+import { white, ligthGrey, red, lightGreen, lightGolden, lightBlue, blue } from '../utils/colors'
 
 
 class Quiz extends Component {
@@ -149,8 +150,8 @@ class Quiz extends Component {
                         <TouchableOpacity style={styles.buttons} onPress={() => this.props.navigation.goBack()}>
                             <Text style={{ fontSize: 20 }}>Back to deck</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.buttons, { backgroundColor: 'black' }]} onPress={this.restart}>
-                            <Text style={{ fontSize: 20, color: 'white' }}>Restart</Text>
+                        <TouchableOpacity style={[styles.buttons, { backgroundColor: blue }]} onPress={this.restart}>
+                            <Text style={{ fontSize: 20, color: white }}>Restart</Text>
                         </TouchableOpacity>
                     </View>
                 </View> : <View style={styles.container}>
@@ -209,10 +210,10 @@ class Quiz extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.replyButtons}>
-                        <TouchableOpacity style={[styles.reply, { backgroundColor: "rgb(7,160,61)" }]} onPress={this.correct}>
+                        <TouchableOpacity style={[styles.reply, { backgroundColor: lightGreen }]} onPress={this.correct}>
                             <Text style={{ fontSize: 15 }}>Correct</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.reply, { backgroundColor: "rgb(201,21,29)" }]} onPress={this.Incorrect}>
+                        <TouchableOpacity style={[styles.reply, { backgroundColor: red }]} onPress={this.Incorrect}>
                             <Text style={{ fontSize: 15 }}>Incorrect</Text>
                         </TouchableOpacity>
                     </View>
@@ -254,22 +255,22 @@ const styles = StyleSheet.create({
     front: {
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: ligthGrey,
         width: 300,
         height: 200,
         borderRadius: 5,
-        backgroundColor: 'rgba(238,231,231,0.85)'
+        backgroundColor: lightGolden
     },
     back: {
         position: "absolute",
         top: 0,
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: ligthGrey,
         width: 300,
         height: 200,
         borderRadius: 5,
-        backgroundColor: 'rgba(234,228,188,0.85)'
+        backgroundColor: lightBlue
     },
     question: {
         fontSize: 20
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     },
     answer: {
         fontSize: 30,
-        color: "red"
+        color: red
     },
     replyButtons: {
         marginBottom: 10
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
     reply: {
         paddingHorizontal: 50,
         paddingVertical: 20,
-        borderColor: 'rgba(0,0,0,0.4)',
+        borderColor: ligthGrey,
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: Platform.OS === "ios" ? 16 : 2,
@@ -298,7 +299,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         paddingHorizontal: 50,
         paddingVertical: 20,
-        borderColor: 'rgba(0,0,0,0.4)',
+        borderColor: ligthGrey,
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: 20,
@@ -310,6 +311,5 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
     deck: state.deck
 })
-
 
 export default connect(mapStateToProps)(Quiz)

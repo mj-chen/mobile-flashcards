@@ -12,6 +12,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createStore } from 'redux'
 import { setLocalNotifications, clearLocalNotifications } from './utils/helpers'
+import { golden, white, blue } from './utils/colors'
 
 const UdaciStatusBar = ({ backgroundColor, ...props }) => {
   return (
@@ -41,7 +42,7 @@ const options = {
     header: null,
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? "#e6b405" : "white",
+    activeTintColor: Platform.OS === 'ios' ? golden : white,
     labelStayle: {
       fontSize: 30
     },
@@ -49,7 +50,7 @@ const options = {
       height: 60
     },
     style: {
-      backgroundColor: Platform.OS === 'ios' ? 'white' : "#e6b405"
+      backgroundColor: Platform.OS === 'ios' ? white : golden
     }
   }
 }
@@ -79,7 +80,6 @@ const MainNavigator = createStackNavigator({
 export default class App extends React.Component {
 
   componentDidMount() {
-    clearLocalNotifications()
     setLocalNotifications()
   }
 
@@ -87,7 +87,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
-          <UdaciStatusBar backgroundColor="#093052c7" barStyle="light-content" />
+          <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>
@@ -98,6 +98,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   }
 })

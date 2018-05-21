@@ -1,8 +1,7 @@
-export const RECEIVEDECKS = 'receiveDecks'
-export const RECEIVEDECK = 'receiveDeck'
-export const ADDDECK = 'addDeck'
-export const ADDCARD = 'addCard'
-
+export const RECEIVE_DECKS = 'RECEIVE_DECKS'
+export const RECEIVE_DECK = 'RECEIVE_DECK'
+export const ADD_DECK = 'ADD_DECK'
+export const ADD_CARD = 'ADD_CARD'
 
 export const receiveDecks = (type, decks) => ({
     type,
