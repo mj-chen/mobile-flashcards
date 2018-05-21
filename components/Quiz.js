@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity, Animated, Platform, AsyncStorage } from 'react-native'
-import { getDeck, clearLocalNotifications, setLocalNotifications, MOBILE_FLASHCARDS_NOTE } from '../utils/helpers'
+import { getDeck, clearLocalNotifications, setLocalNotifications } from '../utils/helpers'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 import { white, ligthGrey, red, lightGreen, lightGolden, lightBlue, blue } from '../utils/colors'
@@ -40,6 +40,7 @@ class Quiz extends Component {
         if (flipNum % 2 !== 0) {
             this.flipBackward()
         }
+
         this.setState(state => {
             return {
                 index: state.index + 1,
@@ -48,18 +49,12 @@ class Quiz extends Component {
             }
         })
 
-        AsyncStorage.getItem(MOBILE_FLASHCARDS_NOTE)
-            .then(data => {
-                if (data !== null) {
-                    clearLocalNotifications()
-                        .then(setLocalNotifications)
-                }
-            })
-
         if (index + 1 === total) {
             this.setState({
                 completed: true
             })
+            clearLocalNotifications()
+                .then(setLocalNotifications)
         }
     }
 
@@ -69,6 +64,7 @@ class Quiz extends Component {
         if (flipNum % 2 !== 0) {
             this.flipBackward()
         }
+
         this.setState(state => {
             return {
                 index: state.index + 1,
@@ -76,18 +72,12 @@ class Quiz extends Component {
             }
         })
 
-        AsyncStorage.getItem(MOBILE_FLASHCARDS_NOTE)
-            .then(data => {
-                if (data !== null) {
-                    clearLocalNotifications()
-                        .then(setLocalNotifications)
-                }
-            })
-
         if (index + 1 === total) {
             this.setState({
                 completed: true
             })
+            clearLocalNotifications()
+                .then(setLocalNotifications)
         }
     }
 
