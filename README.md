@@ -1,3 +1,6 @@
+### Summary 
+  - Created in late May 2018, this is my latest React Native project 
+  
 ### About Flash-Card App
    FlashCard is a mobile application that allows users to study collections of flashcards.
    This app allows users to create different categories of flashcards called 'deck', add flashcards to those decks, then take quizzes on those decks.
